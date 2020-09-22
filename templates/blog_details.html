@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Blogs Details</h2>
+  <ul>
+    <li>{{ post.title }}</li>
+    <li>{{ post.author }}</li>
+    <li><p>{{ post.body }}</p></li>
+    <a href="{% url 'blog_update' post.pk %}">Update</a> {% comment %} here we add linkable button to able to make update in detail page,then redirect to same page {% endcomment %}
+    <a href="{% url 'blog_delete' post.pk %}">Delete</a> {% comment %}here we add this line to able to make deletion from details page, then redirect to homepage{% endcomment %}
+
+  </ul>
+{% endblock content %}

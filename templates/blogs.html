@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Blogs List</h2>
+      <a href="{% url 'blog_create' %}">Create New Blog</a>     {% comment %} to able to go to create new page from the home page    {% endcomment %}
+  <ul>
+    {% for post in object_list %}
+      <li>{{ post.title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
