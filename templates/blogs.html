@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
   <h2>Blogs List</h2>
-      <a href="{% url 'blog_create' %}">Create New Blog</a>     {% comment %} to able to go to create new page from the home page    {% endcomment %}
-  <ul>
+   <p id="readmore">Click on any post to read more</p>
+  <section id="container">
     {% for post in object_list %}
-      <li>{{ post.title }}</li>
+         <a href="{% url 'blog_details' post.pk %}">
+           <div class="post">
+            {{ post.title }}
+
+        </div>
+    </a>
     {% endfor %}
-  </ul>
+  </section>
+  <br>
+    <br>
+    <br>
+
+  <a href="{% url 'blog_create' %}">Create New Blog</a>     {% comment %} to able to go to create new page from the home page    {% endcomment %}
+
 {% endblock content %}

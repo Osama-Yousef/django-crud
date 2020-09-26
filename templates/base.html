@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog App</title>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+<main>
 {% block content %}
-<p>This is showing because you forgot to add content to child</p>
 {% endblock content %}
+</main>
 </body>
 </html>
