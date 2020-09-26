@@ -2,6 +2,8 @@
 
 {% block content %}
   <h2>Create New Blog</h2>
+  <div id="one_post">
+
 
   <form action="" method="POST">
     {% csrf_token %}
@@ -9,4 +11,6 @@
 
     <input type="submit" value="SAVE">
   </form>
+  </div>
+
 {% endblock content %}

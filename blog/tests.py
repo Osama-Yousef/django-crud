@@ -18,6 +18,17 @@ class BlogTest(TestCase):
             author=self.user
         )
 
+    
+    def test_string_representation(self):
+        post = Post(title='title')
+        self.assertEqual(str(post), post.title)
+
+    def test_all_fields(self):
+        
+        self.assertEqual(str(self.post), 'apples')
+        self.assertEqual(f'{self.post.author}', 'Osama')
+        self.assertEqual(self.post.body, 'healthy food')
+
     def test_blog_list_view(self):
         response = self.client.get(reverse('blogs'))
         self.assertEqual(response.status_code, 200)
@@ -45,5 +56,25 @@ class BlogTest(TestCase):
         response = self.client.get(url)
         actual = 'blogs.html'
         self.assertTemplateUsed(response, actual)
+    
+    def test_create_view(self):
+        response = self.client.post(reverse('blog_create'), {
+            'title': 'chips',
+            'author': self.user,
+            'body' :'healthy food',
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'chips')
+        self.assertContains(response, 'healthy food')
+        self.assertContains(response, 'Osama')
+
+    def test_delete_view(self):
+        response = self.client.get(reverse('blog_delete', args='1'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Are you sure you want to delete?')
+
+        post_response = self.client.post(reverse('blog_delete', args='1'))
+        self.assertRedirects(post_response, reverse('blogs'), status_code=302)
+
 
     
